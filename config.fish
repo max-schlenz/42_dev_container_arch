@@ -29,4 +29,9 @@ function g
     git $argv
 end
 
+begin; 
+find /home/(whoami)/.vscode-server/extensions/*/bin/ -type f -name '*' -exec chmod +x {} \; 
+or true
+end
+
 end

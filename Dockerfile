@@ -41,9 +41,11 @@ USER		$USER
 
 WORKDIR		"/home/$USER"
 
-# RUN			python -m ensurepip --upgrade && \
-# 			python3 -m pip install --upgrade pip setuptools && \
-# 			python3 -m pip install norminette
-			
-			
+RUN			python3 -m venv /home/$USER/arch/norminette && \
+			/home/$USER/arch/norminette/bin/pip install --upgrade pip setuptools norminette
+
+ENV			PATH="/home/$USER/arch/norminette/bin:${PATH}"
+
 RUN			git config --global credential.helper store 
+
+RUN			find /home/$USER/.vscode-server/extensions/*/bin/ -type f -name 'cpptools*' -exec chmod +x {} \; || true
