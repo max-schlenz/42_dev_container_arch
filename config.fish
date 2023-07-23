@@ -29,6 +29,10 @@ function g
     git $argv
 end
 
+function francinette
+    ~/francinette/tester.sh
+end
+
 begin; 
 find /home/(whoami)/.vscode-server/extensions/*/bin/ -type f -name '*' -exec chmod +x {} \; 
 or true

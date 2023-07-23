@@ -27,13 +27,15 @@ RUN			pacman -Syu  --noconfirm \
 			netcat \
 			xorg-server \
 			xorg-xinit \
-			sudo 
+			sudo \
+			nodejs \
+			npm
 
-RUN			source "/etc/profile.d/debuginfod.sh"
-RUN			chsh -s /bin/fish
-RUN			useradd -ms /bin/fish -rg root $USER
-RUN			echo "$USER ALL=(ALL) ALL" >> /etc/sudoers
-RUN			echo "$USER:root" | chpasswd
+RUN			source "/etc/profile.d/debuginfod.sh" && \
+			chsh -s /bin/fish && \
+			useradd -ms /bin/fish -rg root $USER && \
+			echo "$USER ALL=(ALL) ALL" >> /etc/sudoers && \
+			echo "$USER:root" | chpasswd
 
 RUN			mkdir -p /etc/fish
 COPY		config.fish /etc/fish/config.fish
